@@ -1,0 +1,17 @@
+h1 Users List
+a(href="/users") Back to Users list
+form(action="/users/search" method="GET")
+    input(id="input-field" type="text" name="q")
+    button Search
+ul
+    each user in users
+        li= user.name
+
+
+script.
+    var searchInput = document.getElementById('input-field');
+    var value = searchInput.value;
+    console.log(value);
+    searchInput.addEventListener('change', function() {
+    sessionStorage.setItem('draft', searchInput.value)})
+    searchInput.value = sessionStorage.getItem('draft');
