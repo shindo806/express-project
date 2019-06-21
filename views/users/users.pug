@@ -1,13 +1,13 @@
 h1 Users List
-a(href="/users") Back to Users list
-form(action="/users/search" method="GET")
+a(href="/") Back to Homepage
+form(action="/users/search", method="GET")
     input(id="input-field" type="text" name="q")
     button Search
 ul
     each user in users
         li= user.name
 
-
+// How to use Script with Pug
 script.
     var searchInput = document.getElementById('input-field');
     var value = searchInput.value;
