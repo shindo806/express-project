@@ -20,14 +20,22 @@ block navbar
                         a.dropdown-item(href='#') Another action
                         a.dropdown-item(href='#') Something else here
             form.form-inline.my-2.my-lg-0
-                input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
-                 button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+               input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
+               button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
 block content
     div(class="container")
-        h1 Create new User
+        h1 Search product
 
-        form(action="/users/create", method="POST")
-            label(for="name") Name
-            input(type="text", id="name", name="name" placeholder="Enter your name here", class="form-control") 
-                
-            button(class="btn btn-primary mt-2") Create
+        button(href="/products", class="btn btn-primary mb-2 ml-2") Back to Products Homepage
+
+        form(action="/products/search" method="GET")
+            div(class="form-group mx-sm-3 mb-2")
+                label(for="search" class="sr-only") Search
+                input(type="text", id="search", name="q", class="form-control")
+            
+            button(href="/products/search/", class="btn btn-primary ml-2") Search
+
+        ul
+            each item in product
+                li= item.name
+                    a(href="/products/view/" + item.id, class="btn btn-light") View

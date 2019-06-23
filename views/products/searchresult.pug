@@ -23,11 +23,10 @@ block navbar
                 input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
                  button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
 block content
-    div(class="container")
-        h1 Create new User
+    h1 Result
 
-        form(action="/users/create", method="POST")
-            label(for="name") Name
-            input(type="text", id="name", name="name" placeholder="Enter your name here", class="form-control") 
-                
-            button(class="btn btn-primary mt-2") Create
+    ul
+        each item in product
+            li
+                span= item.name
+                a(href="/products/view/" + item.id) View

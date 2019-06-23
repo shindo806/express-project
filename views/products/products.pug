@@ -21,13 +21,22 @@ block navbar
                         a.dropdown-item(href='#') Something else here
             form.form-inline.my-2.my-lg-0
                 input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
-                 button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+                button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
 block content
+    
     div(class="container")
-        h1 Create new User
+        h1 Our Products
+        div(class="d-flex")
+            a(href="/products/create", class="btn btn-primary mb-2") Add a new Product
+            a(href="/", class="btn btn-primary mb-2 ml-2") Back to homepage
+        
+        div 
+            form(action="/products/search" method="GET")
+                label(for="search", class="mt-2") Search
+                input(type="text" name="q", id="search", class="ml-2 form-control")
+                a(href="/products/search/", class="ml-2 btn btn-primary mt-2") Search for product
 
-        form(action="/users/create", method="POST")
-            label(for="name") Name
-            input(type="text", id="name", name="name" placeholder="Enter your name here", class="form-control") 
-                
-            button(class="btn btn-primary mt-2") Create
+            ul 
+                each product in products
+                    li= product.name
+                        a(href="/products/view/" + product.id, class="btn btn-light ml-2") View
