@@ -14,4 +14,6 @@ router.get('/view/:id', controller.id);
 
 router.post('/create', controller.postCreate);
 
+router.get('/delete/:id', controller.delete);
+
 module.exports = router;

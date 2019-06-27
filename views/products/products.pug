@@ -1,27 +1,5 @@
 extends ../layouts/common
-block navbar
-   nav.navbar.navbar-expand-lg.navbar-light.bg-light
-        a.navbar-brand(href='/')
-            img(src='/images/edit.png', width='50', height='50', alt='')
-        a.navbar-brand(href='/', class="font-weight-bold") Steel Company
-        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-            span.navbar-toggler-icon
-        #navbarSupportedContent.collapse.navbar-collapse
-            ul.navbar-nav.mr-auto
-                li.nav-item
-                    a.nav-link(href='/users')    Users 
-                li.nav-item
-                    a.nav-link(href='/products') Products
-                li.nav-item.dropdown
-                    a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                        | Dropdown link
-                    .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
-                        a.dropdown-item(href='#') Action
-                        a.dropdown-item(href='#') Another action
-                        a.dropdown-item(href='#') Something else here
-            form.form-inline.my-2.my-lg-0
-                input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
-                button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+
 block content
     
     div(class="container")
@@ -34,9 +12,18 @@ block content
             form(action="/products/search" method="GET")
                 label(for="search", class="mt-2") Search
                 input(type="text" name="q", id="search", class="ml-2 form-control")
-                a(href="/products/search/", class="ml-2 btn btn-primary mt-2") Search for product
+                //- a(href="/products/search/", class="ml-2 btn btn-primary mt-2") Search for product
 
-            ul 
+        table.table
+            thead
+                tr
+                    th(scope='col') Name
+                    th(scope='col') More infomation
+            tbody
                 each product in products
-                    li= product.name
-                        a(href="/products/view/" + product.id, class="btn btn-light ml-2") View
+                    tr    
+                        td 
+                            p(class="ml-2 mt-2")
+                                span= product.name
+                        td 
+                            a(href="/products/view/" + product.id, class="btn btn-info ml-2 mt-1") View

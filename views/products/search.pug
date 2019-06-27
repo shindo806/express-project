@@ -1,32 +1,10 @@
 extends ../layouts/common
-block navbar
-   nav.navbar.navbar-expand-lg.navbar-light.bg-light
-        a.navbar-brand(href='/')
-            img(src='/images/edit.png', width='50', height='50', alt='')
-        a.navbar-brand(href='/', class="font-weight-bold") Steel Company
-        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-            span.navbar-toggler-icon
-        #navbarSupportedContent.collapse.navbar-collapse
-            ul.navbar-nav.mr-auto
-                li.nav-item
-                    a.nav-link(href='/users')    Users 
-                li.nav-item
-                    a.nav-link(href='/products') Products
-                li.nav-item.dropdown
-                    a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                        | Dropdown link
-                    .dropdown-menu(aria-labelledby='navbarDropdownMenuLink')
-                        a.dropdown-item(href='#') Action
-                        a.dropdown-item(href='#') Another action
-                        a.dropdown-item(href='#') Something else here
-            form.form-inline.my-2.my-lg-0
-               input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
-               button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+
 block content
     div(class="container")
         h1 Search product
 
-        button(href="/products", class="btn btn-primary mb-2 ml-2") Back to Products Homepage
+        a(href="/products", class="btn btn-primary mb-2 ml-2") Back to Products Homepage
 
         form(action="/products/search" method="GET")
             div(class="form-group mx-sm-3 mb-2")
@@ -35,7 +13,17 @@ block content
             
             button(href="/products/search/", class="btn btn-primary ml-2") Search
 
-        ul
-            each item in product
-                li= item.name
-                    a(href="/products/view/" + item.id, class="btn btn-light") View
+        table.table
+            thead
+                tr
+                    th(scope='col') Name
+                    th(scope="col") More infomation
+            tbody
+                each item in product
+                    tr                        
+                        td
+                            p= item.name
+                        td
+                            a(href="/products/view/" + item.id, class="btn btn-info ml-5") View
+
+

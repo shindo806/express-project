@@ -20,7 +20,7 @@ module.exports.search = function (req, res) {
     var matchedProducts = products.filter(function (product) {
         if (product.name.toLowerCase().indexOf(q) !== -1) {
             return product.name;
-        } else if (q === null) {
+        } else if (q === -1) {
             matchedProducts = products
         }
     });
@@ -45,3 +45,11 @@ module.exports.postCreate = function (req, res) {
     db.get('products').push(newProduct).write();
     res.redirect('/products');
 };
+
+module.exports.delete = function (req, res) {
+    var id = req.params.id;
+    db.get('products').remove({
+        id: id
+    }).write();
+    res.render('./')
+}
