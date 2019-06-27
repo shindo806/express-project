@@ -65,5 +65,5 @@ module.exports.delete = function (req, res) {
     db.get('users').remove({
         id: id
     }).write();
-    res.render('./')
+    res.redirect('/users');
 }
