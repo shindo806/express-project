@@ -1,10 +1,10 @@
 var db = require('../db');
 var users = db.get('users');
-const shortid = require('shortid');
 const low = require('lowdb');
 const FileSync = require('lowdb/adapters/FileSync');
 const adapter = new FileSync('db.json');
 var db = low(adapter);
+var md5 = require('md5');
 
 module.exports.login = function (req, res) {
     res.render('./auth/login');
@@ -13,7 +13,7 @@ module.exports.login = function (req, res) {
 module.exports.postLogin = function (req, res) {
     var email = req.body.email;
     var password = req.body.password;
-
+    var hashPass = md5(password);
     var userEmail = users.find({
         email: email
     }).value();
@@ -37,7 +37,7 @@ module.exports.postLogin = function (req, res) {
     }
     // Check login status by email or user name
     if (userName === undefined) {
-        if (userEmail.password !== password) {
+        if (userEmail.password !== hashPass) {
             res.render('./auth/login', {
                 errors: errors = ['Mật khẩu không đúng'],
                 values: values = req.body
@@ -45,7 +45,7 @@ module.exports.postLogin = function (req, res) {
         }
     }
     if (userEmail === undefined) {
-        if (userName.password !== password) {
+        if (userName.password !== hashPass) {
             res.render('./auth/login', {
                 errors: errors = ['Mật khẩu không đúng'],
                 values: values = req.body
@@ -53,16 +53,16 @@ module.exports.postLogin = function (req, res) {
         }
     }
     if (userName === undefined) {
-        if (userEmail.password === password) {
+        if (userEmail.password === hashPass) {
             res.cookie('userID', userEmail.id);
-            res.render('index');
+            res.redirect('/');
             return;
         }
     }
     if (userEmail === undefined) {
-        if (userName.password === password) {
+        if (userName.password === hashPass) {
             res.cookie('userID', userName.id);
-            res.render('index');
+            res.redirect('/');
             return;
         }
     }

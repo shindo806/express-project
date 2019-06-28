@@ -1,23 +1,40 @@
 {
   "users": [
     {
-      "name": "shindo",
+      "name": "Shindo",
       "phone": "0938752570",
       "id": "tDRt1ZNVs",
-      "password": "123456"
+      "password": "e10adc3949ba59abbe56e057f20f883e"
     },
     {
       "name": "Hikaru",
       "phone": "0938752570",
       "email": "shindo@gmail.com",
-      "password": "123456",
-      "id": "tDRt1ZNVa"
+      "id": "tDRt1ZNVA",
+      "password": "e10adc3949ba59abbe56e057f20f883e"
     },
     {
-      "name": "Sasuke",
+      "name": "Nguyễn Quốc Vương",
       "phone": "0938752570",
-      "id": "GXJDC4AzF"
+      "id": "FAVy4OKIY"
     }
   ],
-  "products": []
+  "products": [
+    {
+      "name": "ok ok",
+      "id": "tBj2afvcu"
+    },
+    {
+      "name": "haha",
+      "id": "IvxV10lzT"
+    },
+    {
+      "name": "im fine",
+      "id": "IJ6Dj3kcF"
+    },
+    {
+      "name": "lucky",
+      "id": "Hgg1S4wC6"
+    }
+  ]
 }
