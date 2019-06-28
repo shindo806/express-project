@@ -44,7 +44,6 @@ module.exports.postLogin = function (req, res) {
             })
         }
     }
-
     if (userEmail === undefined) {
         if (userName.password !== password) {
             res.render('./auth/login', {
@@ -53,7 +52,6 @@ module.exports.postLogin = function (req, res) {
             })
         }
     }
-
     if (userName === undefined) {
         if (userEmail.password === password) {
             res.cookie('userID', userEmail.id);
@@ -69,28 +67,3 @@ module.exports.postLogin = function (req, res) {
         }
     }
 }
-
-
-// if (userEmail.password !== password && userName === undefined) {
-//     res.render('./auth/login', {
-//         errors: errors = ['Mật khẩu không đúng'],
-//         values: values = req.body
-//     })
-//     return;
-// } else if (userEmail.password === password && userName === undefined) {
-//     res.cookie('userID', userEmail.id);
-//     res.render('index');
-//     return;
-// } else if (userEmail === undefined && userName.password !== password) {
-//     res.render('./auth/login', {
-//         errors: errors = ['Mật khẩu không đúng'],
-//         values: values = req.body
-//     })
-//     return;
-// } else if (userEmail === undefined && userName.password === password) {
-//     res.cookie('userID', userName.id);
-//     res.render('index');
-//     return;
-// }
-
-// }
