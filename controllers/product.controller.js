@@ -41,18 +41,7 @@ module.exports.id = function (req, res) {
 
 module.exports.postCreate = function (req, res) {
     req.body.id = shortid.generate();
-    var newProduct = req.body;
-    var errors = [];
-    if (!newProduct.name) {
-        errors.push('Products name is required');
-    }
-    if (errors.length) {
-        res.render('./products/createproduct', {
-            errors: errors
-        })
-        return
-    }
-    db.get('products').push(newProduct).write();
+    db.get('products').push(req.body).write();
     res.redirect('/products');
 };
 
