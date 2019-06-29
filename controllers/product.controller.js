@@ -6,16 +6,25 @@ var db = require('../db');
 var products = db.get('products').value();
 
 module.exports.index = function (req, res) {
-    var perPage = 8;
+    const perPage = 8;
+
     var page = parseInt(req.query.page) || 1;
-    var maxPage = Math.ceil(products.length / perPage);
+    var prevPage = (page - 1);
+    var cont1Page = page + 1;
+    var cont2Page = page + 2;
+    var nextPage = page + 3;
+    const maxPage = Math.ceil(products.length / perPage);
 
     var start = (page - 1) * perPage;
     var end = page * perPage;
     res.render('products/products.pug', {
         // products: db.get('products').value().slice(start, end)
         products: db.get('products').drop((page - 1) * perPage).take(perPage).value(),
-        page: page = parseInt(req.query.page),
+        page: page,
+        prevPage: prevPage,
+        cont1Page: cont1Page,
+        cont2Page: cont2Page,
+        nextPage: nextPage,
         maxPage: maxPage
     });
 };
