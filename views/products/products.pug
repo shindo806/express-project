@@ -14,16 +14,38 @@ block content
                 input(type="text" name="q", id="search", class="ml-2 form-control")
                 //- a(href="/products/search/", class="ml-2 btn btn-primary mt-2") Search for product
 
-        table.table
-            thead
-                tr
-                    th(scope='col') Name
-                    th(scope='col') More infomation
-            tbody
-                each product in products
-                    tr    
-                        td 
-                            p(class="ml-2 mt-2")
-                                span= product.name
-                        td 
-                            a(href="/products/view/" + product.id, class="btn btn-info ml-2 mt-1") View
+       
+        
+        div(class="row")
+            each product in products
+                div(class="col-sm-3 mr-0.5")
+                    .card(style='width: 18rem;')
+                        img.card-img-top(src=product.image, alt='...')
+                    .card-body
+                        h5(class="card-title")= product.name 
+                        p(class="card-text")= product.description
+                        
+                        a.btn.btn-primary(href='#') Add to cart
+    
+        nav(aria-label='Page navigation example')
+            ul.pagination
+                if page == --maxPage
+                    li.page-item
+                    a.page-link(href='products?page='+--page) Previous
+                    li.page-item
+                    a.page-link(href='products?page=' + ++page)=page
+                    li.page-item
+                    a.page-link(href='products?page=' + ++page)=page
+                else if page < ++maxPage
+                    li.page-item
+                    a.page-link(href='products?page='+--page) Previous
+                    li.page-item
+                    a.page-link(href='products?page=' + ++page)=page
+                    li.page-item
+                    a.page-link(href='products?page=' + ++page)=page
+                    li.page-item
+                    a.page-link(href='products?page=' + ++page)=page
+                    li.page-item
+                    a.page-link(href='products?page='+ ++page) Next
+            
+                

@@ -6,8 +6,17 @@ var db = require('../db');
 var products = db.get('products').value();
 
 module.exports.index = function (req, res) {
+    var perPage = 8;
+    var page = parseInt(req.query.page) || 1;
+    var maxPage = Math.ceil(products.length / perPage);
+
+    var start = (page - 1) * perPage;
+    var end = page * perPage;
     res.render('products/products.pug', {
-        products: products
+        // products: db.get('products').value().slice(start, end)
+        products: db.get('products').drop((page - 1) * perPage).take(perPage).value(),
+        page: page = parseInt(req.query.page),
+        maxPage: maxPage
     });
 };
 

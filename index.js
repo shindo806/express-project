@@ -1,3 +1,6 @@
+require('dotenv').config();
+
+
 const express = require('express');
 var bodyParse = require('body-parser');
 const port = 3000;
