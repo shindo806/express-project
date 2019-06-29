@@ -13,7 +13,7 @@ var authLogin = require('./middlewares/auth.middleware');
 const app = express();
 app.set('view engine', 'pug');
 app.set('views', './views');
-app.use(cookieParser());
+app.use(cookieParser(process.env.SESSION_SECRET));
 
 app.use(express.static('public'));
 app.use(bodyParse.json()) // for parsing application/json

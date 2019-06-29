@@ -54,14 +54,18 @@ module.exports.postLogin = function (req, res) {
     }
     if (userName === undefined) {
         if (userEmail.password === hashPass) {
-            res.cookie('userID', userEmail.id);
+            res.cookie('userID', userEmail.id, {
+                signed: true
+            });
             res.redirect('/');
             return;
         }
     }
     if (userEmail === undefined) {
         if (userName.password === hashPass) {
-            res.cookie('userID', userName.id);
+            res.cookie('userID', userName.id, {
+                signed: true
+            });
             res.redirect('/');
             return;
         }
