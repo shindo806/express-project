@@ -9,8 +9,10 @@ var cookieParser = require('cookie-parser')
 
 var userRoutes = require('./routes/user.route');
 var productRoutes = require('./routes/product.route');
-var authRoutes = require('./routes/auth.route');
-var authLogin = require('./middlewares/auth.middleware');
+var authRoute = require('./routes/auth.route');
+var cartRoute = require('./routes/cart.route');
+
+var sessionMiddleware = require('./middlewares/session.middleware');
 
 
 const app = express();
@@ -23,8 +25,9 @@ app.use(bodyParse.json()) // for parsing application/json
 app.use(bodyParse.urlencoded({
     extended: true
 })) // for parsing application/x-www-form-urlencoded
+app.use(sessionMiddleware);
 
-app.get('/', authLogin.requireAuth, function (req, res) {
+app.get('/', function (req, res) {
     res.render('index.pug');
 });
 
@@ -32,6 +35,8 @@ app.use('/users', userRoutes);
 
 app.use('/products', productRoutes);
 
-app.use('/auth', authRoutes);
+app.use('/auth', authRoute);
+
+app.use('/cart/', cartRoute);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

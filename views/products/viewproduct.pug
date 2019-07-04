@@ -1,17 +1,21 @@
 extends ../layouts/common
 
 block content
+    .ml-10.mt-10
+        a(type="sumbit", href="/products", class="btn btn-primary mt-10") Back to Products Page
     div.container
+        
         h1 Product
-            p 
-                table.table
-                    tr
-                        td 
-                            b Name:
-                    tr
-                        td  
-                            span(class="ml-2 font-weight-bold")= product.name
-                        td
-                            a(href="/products/delete/"+product.id, class="btn btn-danger") Delete
-
-        a(type="sumbit", href="/products", class="btn btn-primary") Back to Products Page
+        
+        div(class="col-sm-3 mr-0.5 mt-10")
+            if product
+                .card(style='width: 18rem;')
+                    img.card-img-top(src=product.image, alt='...')
+                .card-body
+                    h5(class="card-title")= product.name 
+                    p(class="card-text")= product.description
+                    
+                    a.btn.btn-primary.mr-2(href='#') Add to cart
+                    a(href="/products/delete/" + product.id, class="btn btn-danger") Delete
+            
+    

@@ -1,10 +1,6 @@
-.pagination {
-    display: flex;
-    justify-content: center;
-}
-
 .page-link:hover {
-    background-color: orange;
+    background-color: #93006d;
     color: white;
     transition: 200ms;
+    font-weight: 450;
 }

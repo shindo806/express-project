@@ -11,16 +11,17 @@ block content
                 label(for="search" class="sr-only") Search
                 input(type="text", id="search", name="q", class="form-control")
             
-            button(href="/products/search/", class="btn btn-primary ml-2") Search
+            button(href="/products/search/", class="btn btn-primary ml-2 mb-20") Search
 
-        if product
-            div(class="col-sm-3 mr-0.5")
-                    .card(style='width: 18rem;')
-                        img.card-img-top(src=product.image, alt='...')
-                    .card-body
-                        h5(class="card-title")= product.name 
-                        p(class="card-text")= product.description
-                        
-                        a.btn.btn-primary(href='#') Add to cart
+        if matchedProducts
+            div(class="col-sm-3 mr-0.5 mt-10")
+                .card(style='width: 18rem;')
+                    img.card-img-top(src=matchedProducts[0].image, alt='...')
+                .card-body
+                    h5(class="card-title")= matchedProducts[0].name 
+                    p(class="card-text")= matchedProducts[0].description
+                    
+                    a.btn.btn-primary(href='#') Add to cart
+       
 
 

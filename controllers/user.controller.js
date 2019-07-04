@@ -7,7 +7,6 @@ const adapter = new FileSync('db.json');
 var db = low(adapter);
 
 
-
 module.exports.index = function (req, res) {
     res.render("users/users.pug", {
         users: users
@@ -43,6 +42,7 @@ module.exports.id = function (req, res) {
 
 module.exports.postCreate = function (req, res) {
     req.body.id = shortid.generate();
+    req.body.avatar = 'uploads/' + req.file.filename;
     db.get('users').push(req.body).write();
     res.redirect('/users');
 };

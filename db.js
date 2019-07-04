@@ -6,7 +6,8 @@ var db = low(adapter);
 
 db.defaults({
         users: [],
-        products: []
+        products: [],
+        sessions: []
     })
     .write()
 
